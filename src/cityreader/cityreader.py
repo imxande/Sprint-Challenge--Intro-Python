@@ -12,7 +12,7 @@ class City:
     return (f"{self.name}, {self.lat}, {self.lon}")
 
   # sanity check
-  print("La Havana, Cuba", 23.1136, 82.3666)
+  # print("La Havana, Cuba", 23.1136, 82.3666)
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -34,13 +34,14 @@ def cityreader(cities=[]):
   # `cities` list
   with open("cities.csv", "r") as records:
     # I dont need to first line in the file since theres no info just headings
-    next(csv.reader(records))
     city_location = csv.reader(records)
+    next(city_location)
 
   # i need to loop through each line to get from that the relevant info
     for line in city_location:
       # Store name, latitude and longitude in cities list
-      cities.append(City(line[0], line[3], line[4]))
+      # print(line[0], line[3], line[4])
+      cities.append(City(line[0], float(line[3]),float(line[4])))
 
     return cities
 
